@@ -55,8 +55,8 @@ function processProfessorCell(cell, nameText) {
           // Get user settings before displaying
           chrome.storage.sync.get(
             {
-              showTakeAgain: true,
-              showDifficulty: true,
+              showTakeAgain: false,
+              showDifficulty: false,
             },
             (settings) => {
               displayRating(cell, response, settings);
