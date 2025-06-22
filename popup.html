@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>RMP Extension - Calhoun CC</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --calhoun-dark-blue: #003595;
+        --calhoun-teal: #181877;
+        --light-gray: #f0f4f7;
+        --text-color: #333;
+        --border-color: #dbe2e8;
+        --white: #ffffff;
+        --success-green: #2e8b57;
+        --danger-red: #d9534f;
+      }
+      body {
+        width: 380px;
+        font-family: "Poppins", -apple-system, BlinkMacSystemFont, "Segoe UI",
+          Roboto, Helvetica, Arial, sans-serif;
+        margin: 0;
+        background-color: var(--light-gray);
+        color: var(--text-color);
+      }
+      .header {
+        background: var(--calhoun-dark-blue);
+        color: var(--white);
+        padding: 18px 20px;
+        text-align: center;
+        border-bottom: 4px solid var(--calhoun-teal);
+      }
+      .header h1 {
+        margin: 0;
+        font-size: 19px;
+        font-weight: 600;
+      }
+      .tabs {
+        display: flex;
+        background-color: var(--white);
+        border-bottom: 1px solid var(--border-color);
+      }
+      .tab-button {
+        flex-grow: 1;
+        padding: 14px;
+        border: none;
+        background-color: transparent;
+        cursor: pointer;
+        font-size: 15px;
+        font-weight: 500;
+        color: #555;
+        transition: all 0.2s ease-in-out;
+        border-bottom: 3px solid transparent;
+      }
+      .tab-button.active {
+        color: var(--calhoun-teal);
+        border-bottom: 3px solid var(--calhoun-teal);
+      }
+      .tab-button:not(.active):hover {
+        background-color: #f7f9fa;
+      }
+      .tab-content {
+        padding: 25px;
+      }
+      .tab-content p {
+        font-size: 14px;
+        line-height: 1.6;
+        color: #444;
+        margin: 0 0 15px 0;
+      }
+      /* New Options styling will be applied to elements in options.html */
+      .options-container h2 {
+        font-size: 1.2rem;
+        margin-top: 0;
+        margin-bottom: 20px;
+        color: var(--calhoun-dark-blue);
+        border-bottom: 1px solid var(--border-color);
+        padding-bottom: 10px;
+      }
+      .option {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 15px 10px;
+        background-color: var(--white);
+        border-radius: 8px;
+        margin-bottom: 12px;
+        border: 1px solid var(--border-color);
+        transition: box-shadow 0.2s;
+      }
+      .option:hover {
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+      }
+      .option label {
+        font-size: 14px;
+        color: var(--text-color);
+      }
+      /* Toggle Switch Styles */
+      .switch {
+        position: relative;
+        display: inline-block;
+        width: 48px;
+        height: 26px;
+      }
+      .switch input {
+        opacity: 0;
+        width: 0;
+        height: 0;
+      }
+      .slider {
+        position: absolute;
+        cursor: pointer;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: #ccc;
+        transition: 0.4s;
+        border-radius: 26px;
+      }
+      .slider:before {
+        position: absolute;
+        content: "";
+        height: 18px;
+        width: 18px;
+        left: 4px;
+        bottom: 4px;
+        background-color: white;
+        transition: 0.4s;
+        border-radius: 50%;
+      }
+      input:checked + .slider {
+        background-color: var(--calhoun-teal);
+      }
+      input:checked + .slider:before {
+        transform: translateX(22px);
+      }
+
+      .button-group {
+        display: flex;
+        gap: 12px;
+        margin-top: 25px;
+      }
+      .action-button {
+        flex-grow: 1;
+        padding: 12px 20px;
+        border: none;
+        color: white;
+        border-radius: 6px;
+        cursor: pointer;
+        font-size: 15px;
+        font-weight: 500;
+        transition: background-color 0.2s, transform 0.1s;
+      }
+      .action-button:hover {
+        transform: translateY(-1px);
+      }
+      #save {
+        background-color: var(--success-green);
+      }
+      #save:hover {
+        background-color: #257045;
+      }
+      #clearCache {
+        background-color: var(--danger-red);
+      }
+      #clearCache:hover {
+        background-color: #c9302c;
+      }
+      #status {
+        margin-top: 18px;
+        font-weight: 500;
+        color: var(--success-green);
+        text-align: center;
+        font-size: 14px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="header">
+      <h1>Rate My Professor - Calhoun CC</h1>
+    </div>
+    <div class="tabs">
+      <button class="tab-button active" data-tab="about">About</button>
+      <button class="tab-button" data-tab="options">Options</button>
+    </div>
+    <div id="about" class="tab-content">
+      <p>
+        This extension automatically displays professor ratings on the class
+        registration page.
+      </p>
+      <p>
+        No action is needed here. Just browse for classes and the ratings will
+        appear!
+      </p>
+    </div>
+    <div id="options" class="tab-content" style="display: none">
+      <!-- Options content from options.html will be loaded here -->
+    </div>
+
+    <script src="popup.js"></script>
+  </body>
+</html>

@@ -1,0 +1,201 @@
+/* RMP Extension Styles */
+.rmp-container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-top: 5px;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica,
+    Arial, sans-serif;
+  font-size: 12px;
+  border-top: 1px solid #eee;
+  padding-top: 5px;
+}
+
+.rmp-loading-container {
+  color: #888;
+  font-style: italic;
+}
+
+.rmp-rating {
+  padding: 3px 8px;
+  border-radius: 12px;
+  font-weight: bold;
+  color: white !important;
+  margin-bottom: 6px;
+  text-decoration: none !important;
+  display: inline-block;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.rmp-rating:hover {
+  transform: scale(1.05);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+.rmp-extra-detail {
+  font-size: 11px;
+  color: #555;
+  margin-bottom: 4px;
+}
+
+.rmp-extra-detail b {
+  color: #000;
+}
+
+/* Base color rules with maximum specificity */
+.rmp-container .rmp-rating.rmp-green,
+.rmp-rating.rmp-green,
+a.rmp-rating.rmp-green,
+td .rmp-rating.rmp-green,
+div .rmp-rating.rmp-green {
+  background-color: #28a745 !important;
+  color: white !important;
+}
+
+.rmp-container .rmp-rating.rmp-yellow,
+.rmp-rating.rmp-yellow,
+a.rmp-rating.rmp-yellow,
+td .rmp-rating.rmp-yellow,
+div .rmp-rating.rmp-yellow {
+  background-color: #ffc107 !important;
+  color: #212529 !important;
+}
+
+.rmp-container .rmp-rating.rmp-red,
+.rmp-rating.rmp-red,
+a.rmp-rating.rmp-red,
+td .rmp-rating.rmp-red,
+div .rmp-rating.rmp-red {
+  background-color: #dc3545 !important;
+  color: white !important;
+}
+
+.rmp-container .rmp-rating.rmp-gray,
+.rmp-rating.rmp-gray,
+a.rmp-rating.rmp-gray,
+td .rmp-rating.rmp-gray,
+div .rmp-rating.rmp-gray {
+  background-color: #6c757d !important;
+  color: white !important;
+}
+
+/* Selected row states */
+tr[aria-selected="true"] .rmp-rating.rmp-green,
+div[aria-selected="true"] .rmp-rating.rmp-green,
+.selected .rmp-rating.rmp-green,
+tr.selected .rmp-rating.rmp-green {
+  background-color: #28a745 !important;
+  color: white !important;
+}
+
+tr[aria-selected="true"] .rmp-rating.rmp-yellow,
+div[aria-selected="true"] .rmp-rating.rmp-yellow,
+.selected .rmp-rating.rmp-yellow,
+tr.selected .rmp-rating.rmp-yellow {
+  background-color: #ffc107 !important;
+  color: #212529 !important;
+}
+
+tr[aria-selected="true"] .rmp-rating.rmp-red,
+div[aria-selected="true"] .rmp-rating.rmp-red,
+.selected .rmp-rating.rmp-red,
+tr.selected .rmp-rating.rmp-red {
+  background-color: #dc3545 !important;
+  color: white !important;
+}
+
+tr[aria-selected="true"] .rmp-rating.rmp-gray,
+div[aria-selected="true"] .rmp-rating.rmp-gray,
+.selected .rmp-rating.rmp-gray,
+tr.selected .rmp-rating.rmp-gray {
+  background-color: #6c757d !important;
+  color: white !important;
+}
+
+/* Row hover states (when hovering anywhere on the row) */
+tr:hover .rmp-rating.rmp-green,
+div:hover .rmp-rating.rmp-green,
+.hover .rmp-rating.rmp-green {
+  background-color: #28a745 !important;
+  color: white !important;
+}
+
+tr:hover .rmp-rating.rmp-yellow,
+div:hover .rmp-rating.rmp-yellow,
+.hover .rmp-rating.rmp-yellow {
+  background-color: #ffc107 !important;
+  color: #212529 !important;
+}
+
+tr:hover .rmp-rating.rmp-red,
+div:hover .rmp-rating.rmp-red,
+.hover .rmp-rating.rmp-red {
+  background-color: #dc3545 !important;
+  color: white !important;
+}
+
+tr:hover .rmp-rating.rmp-gray,
+div:hover .rmp-rating.rmp-gray,
+.hover .rmp-rating.rmp-gray {
+  background-color: #6c757d !important;
+  color: white !important;
+}
+
+/* Selected + Row hover states (most specific) */
+tr[aria-selected="true"]:hover .rmp-rating.rmp-green,
+div[aria-selected="true"]:hover .rmp-rating.rmp-green,
+tr.selected:hover .rmp-rating.rmp-green,
+.selected:hover .rmp-rating.rmp-green {
+  background-color: #28a745 !important;
+  color: white !important;
+}
+
+tr[aria-selected="true"]:hover .rmp-rating.rmp-yellow,
+div[aria-selected="true"]:hover .rmp-rating.rmp-yellow,
+tr.selected:hover .rmp-rating.rmp-yellow,
+.selected:hover .rmp-rating.rmp-yellow {
+  background-color: #ffc107 !important;
+  color: #212529 !important;
+}
+
+tr[aria-selected="true"]:hover .rmp-rating.rmp-red,
+div[aria-selected="true"]:hover .rmp-rating.rmp-red,
+tr.selected:hover .rmp-rating.rmp-red,
+.selected:hover .rmp-rating.rmp-red {
+  background-color: #dc3545 !important;
+  color: white !important;
+}
+
+tr[aria-selected="true"]:hover .rmp-rating.rmp-gray,
+div[aria-selected="true"]:hover .rmp-rating.rmp-gray,
+tr.selected:hover .rmp-rating.rmp-gray,
+.selected:hover .rmp-rating.rmp-gray {
+  background-color: #6c757d !important;
+  color: white !important;
+}
+
+/* Individual badge hover states */
+.rmp-rating.rmp-green:hover,
+a.rmp-rating.rmp-green:hover {
+  background-color: #28a745 !important;
+  color: white !important;
+}
+
+.rmp-rating.rmp-yellow:hover,
+a.rmp-rating.rmp-yellow:hover {
+  background-color: #ffc107 !important;
+  color: #212529 !important;
+}
+
+.rmp-rating.rmp-red:hover,
+a.rmp-rating.rmp-red:hover {
+  background-color: #dc3545 !important;
+  color: white !important;
+}
+
+.rmp-rating.rmp-gray:hover,
+a.rmp-rating.rmp-gray:hover {
+  background-color: #6c757d !important;
+  color: white !important;
+}
