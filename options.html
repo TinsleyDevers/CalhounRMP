@@ -3,7 +3,15 @@
   <h2>Extension Options</h2>
 
   <div class="option">
-    <label for="showTakeAgain">Display "Would take again" percentage</label>
+    <label for="showNumRatings">Show number of ratings</label>
+    <label class="switch">
+      <input type="checkbox" id="showNumRatings" />
+      <span class="slider"></span>
+    </label>
+  </div>
+
+  <div class="option">
+    <label for="showTakeAgain">Show "would take again"</label>
     <label class="switch">
       <input type="checkbox" id="showTakeAgain" />
       <span class="slider"></span>
@@ -11,7 +19,7 @@
   </div>
 
   <div class="option">
-    <label for="showDifficulty">Display "Level of Difficulty"</label>
+    <label for="showDifficulty">Show difficulty level</label>
     <label class="switch">
       <input type="checkbox" id="showDifficulty" />
       <span class="slider"></span>
@@ -22,5 +30,6 @@
     <button id="save" class="action-button">Save</button>
     <button id="clearCache" class="action-button">Clear Cache</button>
   </div>
+
   <div id="status"></div>
 </div>

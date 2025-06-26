@@ -5,20 +5,22 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap"
       rel="stylesheet"
     />
     <style>
       :root {
         --calhoun-primary-blue: #003595;
         --calhoun-dark-indigo: #181877;
-        --light-gray: #f0f4f7;
-        --text-color: #333;
-        --border-color: #dbe2e8;
+        --light-gray: #f4f6f8;
+        --text-color: #34495e;
+        --border-color: #e0e6ec;
         --white: #ffffff;
-        --success-green: #2e8b57;
-        --danger-red: #d9534f;
+        --success-green: #27ae60;
+        --danger-red: #c0392b;
+        --hover-blue: #f0f4f7;
       }
+
       body {
         width: 380px;
         font-family: "Poppins", -apple-system, BlinkMacSystemFont, "Segoe UI",
@@ -27,23 +29,38 @@
         background-color: var(--light-gray);
         color: var(--text-color);
       }
+
       .header {
-        background: var(--calhoun-primary-blue);
+        background: linear-gradient(
+          45deg,
+          var(--calhoun-dark-indigo),
+          var(--calhoun-primary-blue)
+        );
         color: var(--white);
-        padding: 18px 20px;
-        text-align: center;
-        border-bottom: 4px solid var(--calhoun-dark-indigo);
+        padding: 20px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
       }
+
+      .header img {
+        width: 24px;
+        height: 24px;
+        margin-right: 12px;
+      }
+
       .header h1 {
         margin: 0;
-        font-size: 19px;
+        font-size: 18px;
         font-weight: 600;
       }
+
       .tabs {
         display: flex;
         background-color: var(--white);
-        border-bottom: 1px solid var(--border-color);
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
       }
+
       .tab-button {
         flex-grow: 1;
         padding: 14px;
@@ -51,66 +68,162 @@
         background-color: transparent;
         cursor: pointer;
         font-size: 15px;
-        font-weight: 500;
+        font-weight: 600;
         color: #555;
         transition: all 0.2s ease-in-out;
         border-bottom: 3px solid transparent;
+        position: relative;
+        top: 1px;
       }
+
       .tab-button.active {
-        color: var(--calhoun-dark-indigo);
-        border-bottom: 3px solid var(--calhoun-dark-indigo);
+        color: var(--calhoun-primary-blue);
+        border-bottom: 3px solid var(--calhoun-primary-blue);
       }
+
       .tab-button:not(.active):hover {
-        background-color: #f7f9fa;
+        background-color: var(--hover-blue);
+        color: var(--calhoun-dark-indigo);
       }
+
       .tab-content {
         padding: 25px;
       }
-      .tab-content p {
-        font-size: 14px;
-        line-height: 1.6;
-        color: #444;
-        margin: 0 0 15px 0;
-      }
-      /* New Options styling will be applied to elements in options.html */
-      .options-container h2 {
-        font-size: 1.2rem;
+
+      .tab-content h2 {
+        font-size: 1.3rem;
+        font-weight: 600;
         margin-top: 0;
         margin-bottom: 20px;
-        color: var(--calhoun-primary-blue);
-        border-bottom: 1px solid var(--border-color);
-        padding-bottom: 10px;
+        color: var(--calhoun-dark-indigo);
+        border-bottom: 2px solid var(--border-color);
+        padding-bottom: 12px;
       }
+
+      .tab-content p {
+        font-size: 14px;
+        line-height: 1.7;
+        color: #555;
+        margin: 0 0 15px 0;
+      }
+
+      .info-box {
+        padding: 15px;
+        background-color: var(--hover-blue);
+        border-left: 4px solid var(--calhoun-primary-blue);
+        margin: 20px 0;
+        font-size: 14px;
+        line-height: 1.6;
+        color: var(--text-color);
+      }
+
+      .search-box {
+        display: flex;
+        gap: 10px;
+        margin: 20px 0;
+      }
+
+      #prof-name-input {
+        flex-grow: 1;
+        padding: 10px;
+        border: 1px solid var(--border-color);
+        border-radius: 6px;
+        font-size: 15px;
+        font-family: "Poppins", sans-serif;
+      }
+
+      #search-button {
+        flex-grow: 0;
+        padding: 10px 20px;
+        background-color: var(--calhoun-primary-blue);
+        min-width: 90px;
+      }
+
+      #search-button:hover {
+        background-color: var(--calhoun-dark-indigo);
+      }
+
+      #search-results-container {
+        margin-top: 20px;
+      }
+
+      .result-card {
+        background: var(--white);
+        border-radius: 8px;
+        padding: 16px;
+        border: 1px solid var(--border-color);
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+        opacity: 0;
+        animation: fadeIn 0.5s forwards;
+      }
+
+      @keyframes fadeIn {
+        to {
+          opacity: 1;
+        }
+      }
+
+      .result-card h3 {
+        margin: 0 0 12px 0;
+        color: var(--calhoun-dark-indigo);
+      }
+
+      .result-card p {
+        margin-bottom: 8px;
+      }
+
+      .result-card .result-detail {
+        display: flex;
+        align-items: center;
+        gap: 0.5em;
+        margin: 0;
+      }
+
+      .result-card .result-detail:not(:last-child) {
+        margin-bottom: 8px;
+      }
+
+      .result-card .icon {
+        font-size: 16px;
+      }
+
+      .result-card b {
+        font-weight: 600;
+      }
+
+      .result-card .result-label {
+        color: #444;
+      }
+
       .option {
         display: flex;
         justify-content: space-between;
         align-items: center;
-        padding: 15px 10px;
+        padding: 15px;
         background-color: var(--white);
         border-radius: 8px;
         margin-bottom: 12px;
         border: 1px solid var(--border-color);
-        transition: box-shadow 0.2s;
       }
-      .option:hover {
-        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
-      }
+
       .option label {
         font-size: 14px;
         color: var(--text-color);
       }
-      /* Toggle Switch Styles */
+
       .switch {
         position: relative;
         display: inline-block;
         width: 48px;
         height: 26px;
       }
+
       .switch input {
         opacity: 0;
         width: 0;
         height: 0;
       }
+
       .slider {
         position: absolute;
         cursor: pointer;
@@ -120,86 +233,95 @@
         bottom: 0;
         background-color: #ccc;
         transition: 0.4s;
-        border-radius: 26px;
+        border-radius: 34px;
       }
+
       .slider:before {
         position: absolute;
         content: "";
-        height: 18px;
-        width: 18px;
-        left: 4px;
-        bottom: 4px;
+        height: 20px;
+        width: 20px;
+        left: 3px;
+        bottom: 3px;
         background-color: white;
         transition: 0.4s;
         border-radius: 50%;
       }
+
       input:checked + .slider {
-        background-color: var(--calhoun-dark-indigo);
+        background-color: var(--calhoun-primary-blue);
       }
+
       input:checked + .slider:before {
         transform: translateX(22px);
       }
 
+      .action-button {
+        padding: 10px 20px;
+        border: none;
+        border-radius: 6px;
+        background-color: var(--calhoun-primary-blue);
+        color: var(--white);
+        font-weight: 600;
+        font-size: 14px;
+        cursor: pointer;
+        transition: background-color 0.2s;
+      }
+
+      .action-button:hover {
+        background-color: var(--calhoun-dark-indigo);
+      }
+
       .button-group {
         display: flex;
-        gap: 12px;
-        margin-top: 25px;
+        gap: 10px;
+        margin-top: 20px;
       }
-      .action-button {
-        flex-grow: 1;
-        padding: 12px 20px;
-        border: none;
-        color: white;
-        border-radius: 6px;
-        cursor: pointer;
-        font-size: 15px;
-        font-weight: 500;
-        transition: background-color 0.2s, transform 0.1s;
-      }
-      .action-button:hover {
-        transform: translateY(-1px);
-      }
-      #save {
-        background-color: var(--success-green);
-      }
-      #save:hover {
-        background-color: #257045;
-      }
-      #clearCache {
-        background-color: var(--danger-red);
-      }
-      #clearCache:hover {
-        background-color: #c9302c;
-      }
+
       #status {
-        margin-top: 18px;
-        font-weight: 500;
+        margin-top: 10px;
+        font-size: 13px;
         color: var(--success-green);
-        text-align: center;
-        font-size: 14px;
+        font-weight: 500;
       }
     </style>
   </head>
   <body>
     <div class="header">
-      <h1>Rate My Professor - Calhoun CC</h1>
+      <img src="images/icon16.png" alt="Icon" />
+      <h1>Rate My Professor</h1>
     </div>
+
     <div class="tabs">
       <button class="tab-button active" data-tab="about">About</button>
+      <button class="tab-button" data-tab="search">Search</button>
       <button class="tab-button" data-tab="options">Options</button>
     </div>
-    <div id="about" class="tab-content">
+
+    <div id="about" class="tab-content" style="display: block">
+      <h2>Rate My Professor Extension</h2>
       <p>
-        This extension automatically displays professor ratings on the class
-        registration page.
+        This extension automatically displays professor ratings from
+        RateMyProfessors.com on the Calhoun Community College class registration
+        page.
       </p>
+      <div class="info-box">
+        <strong>How it works:</strong> Simply browse for classes and the ratings
+        will appear automatically next to each professor's name. Click on any
+        rating badge to view the full professor profile on RateMyProfessors.com.
+      </div>
       <p>
         No action is needed here. Just browse for classes and the ratings will
         appear!
       </p>
     </div>
+
+    <div id="search" class="tab-content" style="display: none">
+      <!-- Search content loaded dynamically -->
+    </div>
+
     <div id="options" class="tab-content" style="display: none">
-      <!-- Options content from options.html will be loaded here -->
+      <!-- Options content loaded dynamically -->
     </div>
 
     <script src="popup.js"></script>

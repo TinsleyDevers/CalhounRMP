@@ -1,36 +1,248 @@
-/* RMP Extension Styles */
+/* Rate My Professor Extension Styles */
+
+/* Main container for rating badges */
 .rmp-container {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
+  position: relative;
+  display: inline-block;
+  vertical-align: middle;
   margin-top: 5px;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica,
     Arial, sans-serif;
   font-size: 12px;
-  border-top: 1px solid #eee;
-  padding-top: 5px;
 }
 
+/* Loading indicator */
 .rmp-loading-container {
   color: #888;
   font-style: italic;
 }
 
+/* Rating badge styles */
 .rmp-rating {
-  padding: 3px 8px;
-  border-radius: 12px;
-  font-weight: bold;
-  color: white !important;
-  margin-bottom: 6px;
+  padding: 2px 9px;
+  border-radius: 4px;
+  font-weight: 600;
+  font-size: 13px;
   text-decoration: none !important;
   display: inline-block;
   cursor: pointer;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  transition: background-color 0.2s ease, border-color 0.2s ease,
+    color 0.2s ease;
+  line-height: 1.5;
+  border: 1px solid transparent;
 }
 
-.rmp-rating:hover {
-  transform: scale(1.05);
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+/* Rating color schemes */
+.rmp-rating.rmp-green {
+  background-color: #e4f4e8 !important;
+  color: #2f6f43 !important;
+  border-color: #a2d1b0 !important;
+}
+
+.rmp-rating.rmp-yellow {
+  background-color: #fff8e1 !important;
+  color: #6d5f21 !important;
+  border-color: #f7e3a1 !important;
+}
+
+.rmp-rating.rmp-red {
+  background-color: #fbe6e8 !important;
+  color: #8a343d !important;
+  border-color: #f1b9bf !important;
+}
+
+.rmp-rating.rmp-gray {
+  background-color: #eaedf0 !important;
+  color: #4c5a67 !important;
+  border-color: #d1d9e0 !important;
+}
+
+/* Tooltip container */
+.rmp-tooltip {
+  visibility: hidden;
+  opacity: 0;
+  transform: translate(-50%, 10px);
+  transition: opacity 0.2s ease, transform 0.2s ease;
+  pointer-events: none;
+  position: absolute;
+  z-index: 2147483647;
+  background: #ffffff;
+  color: #333;
+  border-radius: 8px;
+  padding: 12px 16px;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+  border: 1px solid #e0e0e0;
+  width: max-content;
+  max-width: 240px;
+}
+
+/* Tooltip arrow */
+.rmp-tooltip::after {
+  content: "";
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  border-width: 7px;
+  border-style: solid;
+  border-color: transparent transparent #ffffff transparent;
+}
+
+/* Flipped tooltip (when positioned above) */
+.rmp-tooltip.rmp-tooltip--flipped {
+  transform: translate(-50%, -10px);
+}
+
+.rmp-tooltip.rmp-tooltip--flipped::after {
+  top: 100%;
+  bottom: auto;
+  border-color: #ffffff transparent transparent transparent;
+}
+
+/* Visible tooltip */
+.rmp-tooltip.rmp-tooltip--visible {
+  visibility: visible;
+  opacity: 1;
+  transform: translate(-50%, 0);
+}
+
+/* Tooltip content */
+.rmp-tooltip-detail {
+  display: flex;
+  align-items: center;
+  text-align: left;
+  white-space: normal;
+  line-height: 1.5;
+}
+
+.rmp-tooltip-detail:not(:last-child) {
+  margin-bottom: 8px;
+}
+
+.rmp-tooltip-icon {
+  margin-right: 10px;
+  font-size: 16px;
+  color: #003595;
+}
+
+.rmp-tooltip-detail b {
+  font-weight: 600;
+  color: #000;
+}
+
+/* Row selection states - maintain default colors when selected but not hovering badge */
+tr[aria-selected="true"] .rmp-rating.rmp-green:not(:hover),
+div[aria-selected="true"] .rmp-rating.rmp-green:not(:hover),
+.selected .rmp-rating.rmp-green:not(:hover),
+tr.selected .rmp-rating.rmp-green:not(:hover) {
+  background-color: #e4f4e8 !important;
+  color: #2f6f43 !important;
+  border-color: #a2d1b0 !important;
+}
+
+tr[aria-selected="true"] .rmp-rating.rmp-yellow:not(:hover),
+div[aria-selected="true"] .rmp-rating.rmp-yellow:not(:hover),
+.selected .rmp-rating.rmp-yellow:not(:hover),
+tr.selected .rmp-rating.rmp-yellow:not(:hover) {
+  background-color: #fff8e1 !important;
+  color: #6d5f21 !important;
+  border-color: #f7e3a1 !important;
+}
+
+tr[aria-selected="true"] .rmp-rating.rmp-red:not(:hover),
+div[aria-selected="true"] .rmp-rating.rmp-red:not(:hover),
+.selected .rmp-rating.rmp-red:not(:hover),
+tr.selected .rmp-rating.rmp-red:not(:hover) {
+  background-color: #fbe6e8 !important;
+  color: #8a343d !important;
+  border-color: #f1b9bf !important;
+}
+
+tr[aria-selected="true"] .rmp-rating.rmp-gray:not(:hover),
+div[aria-selected="true"] .rmp-rating.rmp-gray:not(:hover),
+.selected .rmp-rating.rmp-gray:not(:hover),
+tr.selected .rmp-rating.rmp-gray:not(:hover) {
+  background-color: #eaedf0 !important;
+  color: #4c5a67 !important;
+  border-color: #d1d9e0 !important;
+}
+
+/* Badge hover protection - prevent row hover from affecting badges */
+tr:hover .rmp-rating.rmp-green:not(:hover),
+div:hover .rmp-rating.rmp-green:not(:hover),
+tr[aria-selected="true"] .rmp-rating.rmp-green:not(:hover),
+div[aria-selected="true"] .rmp-rating.rmp-green:not(:hover) {
+  background-color: #e4f4e8 !important;
+  color: #2f6f43 !important;
+  border-color: #a2d1b0 !important;
+}
+
+tr:hover .rmp-rating.rmp-yellow:not(:hover),
+div:hover .rmp-rating.rmp-yellow:not(:hover),
+tr[aria-selected="true"] .rmp-rating.rmp-yellow:not(:hover),
+div[aria-selected="true"] .rmp-rating.rmp-yellow:not(:hover) {
+  background-color: #fff8e1 !important;
+  color: #6d5f21 !important;
+  border-color: #f7e3a1 !important;
+}
+
+tr:hover .rmp-rating.rmp-red:not(:hover),
+div:hover .rmp-rating.rmp-red:not(:hover),
+tr[aria-selected="true"] .rmp-rating.rmp-red:not(:hover),
+div[aria-selected="true"] .rmp-rating.rmp-red:not(:hover) {
+  background-color: #fbe6e8 !important;
+  color: #8a343d !important;
+  border-color: #f1b9bf !important;
+}
+
+tr:hover .rmp-rating.rmp-gray:not(:hover),
+div:hover .rmp-rating.rmp-gray:not(:hover),
+tr[aria-selected="true"] .rmp-rating.rmp-gray:not(:hover),
+div[aria-selected="true"] .rmp-rating.rmp-gray:not(:hover) {
+  background-color: #eaedf0 !important;
+  color: #4c5a67 !important;
+  border-color: #d1d9e0 !important;
+}
+
+/* Direct hover states for rating badges */
+.rmp-rating.rmp-green:hover,
+tr:hover .rmp-rating.rmp-green:hover,
+div:hover .rmp-rating.rmp-green:hover,
+tr[aria-selected="true"] .rmp-rating.rmp-green:hover,
+div[aria-selected="true"] .rmp-rating.rmp-green:hover {
+  background-color: #28a745 !important;
+  color: white !important;
+  border-color: #28a745 !important;
+}
+
+.rmp-rating.rmp-yellow:hover,
+tr:hover .rmp-rating.rmp-yellow:hover,
+div:hover .rmp-rating.rmp-yellow:hover,
+tr[aria-selected="true"] .rmp-rating.rmp-yellow:hover,
+div[aria-selected="true"] .rmp-rating.rmp-yellow:hover {
+  background-color: #ffc107 !important;
+  color: #212529 !important;
+  border-color: #ffc107 !important;
+}
+
+.rmp-rating.rmp-red:hover,
+tr:hover .rmp-rating.rmp-red:hover,
+div:hover .rmp-rating.rmp-red:hover,
+tr[aria-selected="true"] .rmp-rating.rmp-red:hover,
+div[aria-selected="true"] .rmp-rating.rmp-red:hover {
+  background-color: #dc3545 !important;
+  color: white !important;
+  border-color: #dc3545 !important;
+}
+
+.rmp-rating.rmp-gray:hover,
+tr:hover .rmp-rating.rmp-gray:hover,
+div:hover .rmp-rating.rmp-gray:hover,
+tr[aria-selected="true"] .rmp-rating.rmp-gray:hover,
+div[aria-selected="true"] .rmp-rating.rmp-gray:hover {
+  background-color: #6c757d !important;
+  color: white !important;
+  border-color: #6c757d !important;
 }
 
 .rmp-extra-detail {
@@ -43,159 +255,20 @@
   color: #000;
 }
 
-/* Base color rules with maximum specificity */
-.rmp-container .rmp-rating.rmp-green,
-.rmp-rating.rmp-green,
-a.rmp-rating.rmp-green,
-td .rmp-rating.rmp-green,
-div .rmp-rating.rmp-green {
-  background-color: #28a745 !important;
-  color: white !important;
+.rmp-tooltip-footer {
+  border-top: 1px solid #e0e0e0;
+  margin-top: 10px;
+  padding-top: 10px;
+  text-align: center;
 }
 
-.rmp-container .rmp-rating.rmp-yellow,
-.rmp-rating.rmp-yellow,
-a.rmp-rating.rmp-yellow,
-td .rmp-rating.rmp-yellow,
-div .rmp-rating.rmp-yellow {
-  background-color: #ffc107 !important;
-  color: #212529 !important;
+.rmp-tooltip-footer a {
+  color: var(--calhoun-primary-blue);
+  text-decoration: none;
+  font-weight: 600;
+  transition: text-decoration 0.2s;
 }
 
-.rmp-container .rmp-rating.rmp-red,
-.rmp-rating.rmp-red,
-a.rmp-rating.rmp-red,
-td .rmp-rating.rmp-red,
-div .rmp-rating.rmp-red {
-  background-color: #dc3545 !important;
-  color: white !important;
-}
-
-.rmp-container .rmp-rating.rmp-gray,
-.rmp-rating.rmp-gray,
-a.rmp-rating.rmp-gray,
-td .rmp-rating.rmp-gray,
-div .rmp-rating.rmp-gray {
-  background-color: #6c757d !important;
-  color: white !important;
-}
-
-/* Selected row states */
-tr[aria-selected="true"] .rmp-rating.rmp-green,
-div[aria-selected="true"] .rmp-rating.rmp-green,
-.selected .rmp-rating.rmp-green,
-tr.selected .rmp-rating.rmp-green {
-  background-color: #28a745 !important;
-  color: white !important;
-}
-
-tr[aria-selected="true"] .rmp-rating.rmp-yellow,
-div[aria-selected="true"] .rmp-rating.rmp-yellow,
-.selected .rmp-rating.rmp-yellow,
-tr.selected .rmp-rating.rmp-yellow {
-  background-color: #ffc107 !important;
-  color: #212529 !important;
-}
-
-tr[aria-selected="true"] .rmp-rating.rmp-red,
-div[aria-selected="true"] .rmp-rating.rmp-red,
-.selected .rmp-rating.rmp-red,
-tr.selected .rmp-rating.rmp-red {
-  background-color: #dc3545 !important;
-  color: white !important;
-}
-
-tr[aria-selected="true"] .rmp-rating.rmp-gray,
-div[aria-selected="true"] .rmp-rating.rmp-gray,
-.selected .rmp-rating.rmp-gray,
-tr.selected .rmp-rating.rmp-gray {
-  background-color: #6c757d !important;
-  color: white !important;
-}
-
-/* Row hover states (when hovering anywhere on the row) */
-tr:hover .rmp-rating.rmp-green,
-div:hover .rmp-rating.rmp-green,
-.hover .rmp-rating.rmp-green {
-  background-color: #28a745 !important;
-  color: white !important;
-}
-
-tr:hover .rmp-rating.rmp-yellow,
-div:hover .rmp-rating.rmp-yellow,
-.hover .rmp-rating.rmp-yellow {
-  background-color: #ffc107 !important;
-  color: #212529 !important;
-}
-
-tr:hover .rmp-rating.rmp-red,
-div:hover .rmp-rating.rmp-red,
-.hover .rmp-rating.rmp-red {
-  background-color: #dc3545 !important;
-  color: white !important;
-}
-
-tr:hover .rmp-rating.rmp-gray,
-div:hover .rmp-rating.rmp-gray,
-.hover .rmp-rating.rmp-gray {
-  background-color: #6c757d !important;
-  color: white !important;
-}
-
-/* Selected + Row hover states (most specific) */
-tr[aria-selected="true"]:hover .rmp-rating.rmp-green,
-div[aria-selected="true"]:hover .rmp-rating.rmp-green,
-tr.selected:hover .rmp-rating.rmp-green,
-.selected:hover .rmp-rating.rmp-green {
-  background-color: #28a745 !important;
-  color: white !important;
-}
-
-tr[aria-selected="true"]:hover .rmp-rating.rmp-yellow,
-div[aria-selected="true"]:hover .rmp-rating.rmp-yellow,
-tr.selected:hover .rmp-rating.rmp-yellow,
-.selected:hover .rmp-rating.rmp-yellow {
-  background-color: #ffc107 !important;
-  color: #212529 !important;
-}
-
-tr[aria-selected="true"]:hover .rmp-rating.rmp-red,
-div[aria-selected="true"]:hover .rmp-rating.rmp-red,
-tr.selected:hover .rmp-rating.rmp-red,
-.selected:hover .rmp-rating.rmp-red {
-  background-color: #dc3545 !important;
-  color: white !important;
-}
-
-tr[aria-selected="true"]:hover .rmp-rating.rmp-gray,
-div[aria-selected="true"]:hover .rmp-rating.rmp-gray,
-tr.selected:hover .rmp-rating.rmp-gray,
-.selected:hover .rmp-rating.rmp-gray {
-  background-color: #6c757d !important;
-  color: white !important;
-}
-
-/* Individual badge hover states */
-.rmp-rating.rmp-green:hover,
-a.rmp-rating.rmp-green:hover {
-  background-color: #28a745 !important;
-  color: white !important;
-}
-
-.rmp-rating.rmp-yellow:hover,
-a.rmp-rating.rmp-yellow:hover {
-  background-color: #ffc107 !important;
-  color: #212529 !important;
-}
-
-.rmp-rating.rmp-red:hover,
-a.rmp-rating.rmp-red:hover {
-  background-color: #dc3545 !important;
-  color: white !important;
-}
-
-.rmp-rating.rmp-gray:hover,
-a.rmp-rating.rmp-gray:hover {
-  background-color: #6c757d !important;
-  color: white !important;
+.rmp-tooltip-footer a:hover {
+  text-decoration: underline;
 }
